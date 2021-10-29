@@ -4,6 +4,11 @@
     gap: var(--base-padding);
     text-align: center;
 
+    &__fruit-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     &__fruit-stickers {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
