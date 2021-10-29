@@ -1,0 +1,39 @@
+@use "../tools/mixins/" as media;
+
+body {
+    background-color: hsl(var(--color-hs-primary) var(--color-weight-300));
+    font-family: var(--typeface-base);
+    color: hsl(var(--color-hs-accent) 20%);
+    transition: background-color var(--base-animation-duration) var(--base-easing);
+}
+
+a {
+    color: var(--color-highlight);
+    text-decoration: underline;
+    text-decoration-skip-ink: all;
+    text-decoration-thickness: 15%;
+}
+
+a {
+    color: inherit;
+    text-decoration-color: var(--color-highlight);
+
+    :where(:hover, :focus) {
+        text-decoration-color: hsl(var(--color-hs-accent) var(--color-weight-700));
+    }
+}
+
+ul, ol {
+    margin: 0;
+    padding-inline-start: 1.25em;
+}
+
+em, i {
+    font-style: italic;
+    font-variation-settings: 'ital' 1;
+}
+
+strong, b {
+    font-weight: bolder;
+    font-weight: 550;
+}

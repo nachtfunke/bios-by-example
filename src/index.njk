@@ -1,0 +1,118 @@
+{%- from 'highlight-card.macro.njk' import highlightCard -%}
+{%- from 'fruity-sticker.macro.njk' import fruitySticker -%}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="charset" content="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>fruity card</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+    </head>
+    <body class="layout">
+        <header class="layout__header  header">
+            <a class="logo  header__logo"  href="#">
+                <span class="logo__top">plants!</span>
+                <span class="logo__bottom">what a concept</span>
+            </a>
+            <div class="header__navigation">
+                <button class="button  header__navigation-menu-button  is-opening" aria-expanded="false" data-open-menu>
+                    <span class="open">Open Menu</span>
+                    <span class="close">Close Menu</span>
+                </button>
+                <nav class="menu  header__menu  is-closed" data-menu>
+                    <div class="menu__height-wrapper" data-menu-height-wrapper>
+                        <ul class="list  menu__link-list" role="list">
+                            <li class="list__item  menu__link"><a href="#">Fruits</a></li>
+                            <li class="list__item  menu__link"><a href="#">Veggies</a></li>
+                            <li class="list__item  menu__link"><a href="#">Legumes</a></li>
+                            <li class="list__item  menu__link"><a href="#">Grains</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class="layout__main  content">
+            <h1 class="content__title">so fruity</h1>
+            <ul class="list  content__fruit-cards" role="list">
+                {% for fruit in collections.fruit %}
+                    {% set fruitImage = '/assets/'+fruit.data.img | url %}
+                    <li class="list__item">
+                        {{ highlightCard({
+                            themeColor: fruit.data.theme,
+                            caption: fruit.data.caption,
+                            image: fruitImage,
+                            title: fruit.data.name,
+                            excerpt: fruit.templateContent | safe
+                        }) }}
+                    <li>
+                {% endfor %}
+            </ul>
+            <h2>what about these?</h2>
+            <ul class="list  content__fruit-stickers">
+                {% for fruit in collections.fruit %}
+                    {% set fruitImage = '/assets/'+fruit.data.img | url %}
+                    <li class="list__item">
+                        {{ fruitySticker({
+                            themeColor: fruit.data.theme,
+                            img: { src: fruitImage, alt: fruit.data.name }
+                        }) }}
+                    </li>
+                {% endfor %}
+                {% for fruit in collections.fruit %}
+                    {% set fruitImage = '/assets/'+fruit.data.img | url %}
+                    <li class="list__item">
+                        {{ fruitySticker({
+                            themeColor: fruit.data.theme,
+                            img: { src: fruitImage, alt: fruit.data.name }
+                        }) }}
+                    </li>
+                {% endfor %}
+                {% for fruit in collections.fruit %}
+                    {% set fruitImage = '/assets/'+fruit.data.img | url %}
+                    <li class="list__item">
+                        {{ fruitySticker({
+                            themeColor: fruit.data.theme,
+                            img: { src: fruitImage, alt: fruit.data.name }
+                        }) }}
+                    </li>
+                {% endfor %}
+            <ul>
+        </main>
+        <footer class="layout__footer">
+            &copy; 2021 not evil plant corporation
+        </footer>
+        <script>
+            const openMenuButton = document.querySelector('[data-open-menu]');
+            const menu = document.querySelector('[data-menu]');
+            const heightWrapper = document.querySelector('[data-menu-height-wrapper]');
+
+            openMenuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const newHeight = heightWrapper.offsetHeight;
+
+                if ( openMenuButton.classList.contains('is-opening') ) {
+                    menu.style.height = newHeight+'px';
+                    openMenuButton.setAttribute('aria-expanded', true);
+                    openMenuButton.classList.remove('is-opening');
+                    openMenuButton.classList.add('is-closing');
+                    menu.classList.remove('is-closed');
+                    menu.classList.add('is-open');
+                } else {
+                    menu.style.height = 0;
+
+                    menu.addEventListener('transitionend', function updateMenu() {
+                        openMenuButton.classList.remove('is-closing');
+                        openMenuButton.classList.add('is-opening')
+                        openMenuButton.setAttribute('aria-expanded', false);
+                        menu.classList.remove('is-open');
+                        menu.classList.add('is-closed');
+                        menu.removeEventListener('transitionend', updateMenu);
+                    })
+                }
+            })
+        </script>
+    </body>
+</html>

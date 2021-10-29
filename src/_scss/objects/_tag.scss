@@ -1,0 +1,42 @@
+@use '../tools/mixins/' as media;
+
+.tag:not(.token) {
+    font-family: var(--typeface-headings);
+    font-weight: 500;
+    line-height: 1;
+    padding: .5em 1em;
+    background-color: hsl(var(--color-hs-accent) 95%);
+    color: var(--color-primary);
+    border-radius: 8px;
+    font-size: .75em;
+    display: inline-flex;
+    gap: .5em;
+    align-items: center;
+
+    @include media.widerThan(honey) {
+        font-size: .8125em;
+    }
+
+    > svg {
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+    }
+
+    &.theme--dark {
+        color: hsl(var(--color-hs-accent) 95%);
+        background-color: var(--color-primary);
+        --icon-color: var(--color-accent-500);
+        font-weight: 425;
+    }
+
+    &.vers--large {
+        font-size: .85em;
+        line-height: 1.75;
+        border-radius: 1.15em;
+
+        @include media.widerThan(honey) {
+            font-size: 1em;
+        }
+    }
+}

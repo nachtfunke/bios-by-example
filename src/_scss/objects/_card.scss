@@ -1,0 +1,26 @@
+@mixin mixin($_debth: 1) {
+	background-color: #fff;
+	border-radius: 3px;
+	
+	@if ($_debth: 1) {
+		box-shadow:
+			0 4px 10px rgb(0 0 0 / 8%),
+			0 1px 3px rgb(0 0 0 / 17%);
+	} @else-if ($_debth: 2) {
+		box-shadow:
+			0 3px 5px rgb(0 0 0 / 8%),
+			0 1px 3px rgb(0 0 0 / 30%);
+	} @else-if ($_debth: 3) {
+		box-shadow:
+			0 0 5px rgb(0 0 0 / 10%),
+			0 1px 1px rgb(0 0 0 / 40%)
+	}
+	
+}
+
+.card {
+	--int-card-padding: var(--card-padding, var(--base-padding));
+	display: inline-block;
+	padding: var(--int-card-padding);
+	@include mixin(1);
+}

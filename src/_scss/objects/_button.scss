@@ -1,0 +1,40 @@
+@use 'card' as card;
+@use '../tools/mixins/' as media;
+
+/* Buttons */
+.button {
+    @include card.mixin();
+    --int-theme: var(--theme, 0 0%);
+    --int-darker: calc(100% - var(--darker, 0%));
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--int-size);
+    padding: .5em .5em;
+    border-radius: 2px;
+    color: hsl(var(--color-hs-primary) var(--int-l-text));
+    background-color: hsl(var(--int-theme) var(--int-darker));
+    border: none;
+    transition: background-color var(--base-animation-duration) var(--base-easing);
+
+    &:is(:hover, :focus) {
+        --darker: 5%;
+        cursor: pointer;
+    }
+
+    &:active {
+        --darker: 10%;
+    }
+
+    &.vers--link {
+        box-shadow: none;
+        border: 2px solid currentcolor;
+        border-radius: 5em;
+        padding-inline: 1em;
+    }
+
+    @include media.widerThan(honey) {
+        --int-size: 1em;
+    }
+}

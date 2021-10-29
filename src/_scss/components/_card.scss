@@ -1,0 +1,61 @@
+.card {
+    $p: &;
+    --card-padding: clamp(1.5em, 3%, 3em);
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-padding);
+
+    &__footer {
+        background-color: hsl(0 0% 98%);
+        padding: inherit;
+    }
+
+    &.vers--highlight {
+        padding: 0;
+        overflow: hidden;
+
+        > * {
+            padding: var(--card-padding);
+        }
+
+        #{$p} {
+            &__header {
+                border-radius: 0;
+            }
+            &__body {
+                text-align: center;
+
+                p {
+                    line-height: 1.5;
+                    font-family: var(--typeface-accent);
+                    font-size: 1.15em;
+                    font-weight: 430;
+                    color: hsl( var(--color-hs-highlight) var(--color-weight-900) );
+                }
+            }
+
+            &__title {
+                font-size: 2em;
+                font-weight: 650;
+                text-transform: uppercase;
+                line-height: 1;
+
+                & + * {
+                    margin-block-start: 1em;
+                }
+            }
+
+            &__footer {
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            &__dislike-button {
+                --theme: var(--color-hs-primary);
+                --darker: 5%;
+            }
+        }
+    }
+}

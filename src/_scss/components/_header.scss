@@ -1,0 +1,58 @@
+@use '../objects/sr-only' as sronly;
+
+.header {
+    --int-border-color: var(--border-color, currentcolor);
+    --int-border-size: var(--base-line-size);
+    border: var(--int-border-size) solid var(--int-border-color);
+    padding: var(--base-padding);
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--base-padding);
+    position: relative;
+
+    &__logo {
+        font-size: clamp(.55em, 1.5vmin, 1.25em);
+    }
+
+    &__menu {
+        --menu-padding: calc( var(--base-padding) + var(--int-border-size) );
+        position: absolute;
+        inset-block-start: 100%;
+        inset-inline-start: calc(var(--int-border-size) * -1);
+        width: calc(100% + (var(--int-border-size) * 2));
+        background-color: currentcolor;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        height: 0;
+        overflow: hidden;
+        transition: height var(--base-animation-duration) var(--base-animation-easing);
+
+        &.is-closed {
+            @include sronly.mixin();
+        }
+    }
+
+    &__navigation {
+        &-menu-button {
+            &.is-opening {
+                .open {
+                    display: block;
+                }
+                .close {
+                    display: none;
+                }
+            }
+            
+            &.is-closing {
+                .open {
+                    display: none;
+                }
+                .close {
+                    display: block;
+                }
+            }
+        }
+    }
+}

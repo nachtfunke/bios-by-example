@@ -1,0 +1,21 @@
+{%- from 'fruity-sticker.macro.njk' import fruitySticker -%}
+{%- macro highlightCard(params) -%}
+    <article class="card vers--highlight {{ params.card if params.card }}">
+        {{ fruitySticker({
+            class: 'card__header',
+            themeColor: params.themeColor,
+            caption: params.caption,
+            img: {
+                src: params.image
+            }
+        }) }}
+        <div class="card__body">
+            <h2 class="card__title">{{ params.title }}</h2>
+            {{ params.excerpt }}
+        </div>
+        <footer class="card__footer">
+            <button class="button  card__dislike-button">yuck!</button>
+            <a class="button vers--link  card__more-link" href="#">MOAR!</a>
+        </footer>
+    </article>
+{%- endmacro -%}

@@ -1,0 +1,21 @@
+.food-sticker {
+    --int-theme-color: var(--theme-color, var(--color-accent));
+    border-radius: 15px;
+    background-color: var(--int-theme-color);
+    padding: var(--base-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--base-padding);
+    text-align: center;
+
+    &__image {
+        display: block;
+    }
+
+    &__caption {
+        font-family: var(--typeface-accent);
+        font-size: 1.25em;
+        font-style: italic;
+        font-weight: 450;
+    }
+}

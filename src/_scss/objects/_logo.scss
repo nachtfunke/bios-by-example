@@ -1,0 +1,23 @@
+.logo {
+    display: inline-flex;
+    flex-direction: column;
+    gap: .15em;
+    text-decoration: none;
+    line-height: 1;
+    text-align: end;
+
+    // plants!
+    &__top {
+        font-size: 2em;
+        font-weight: 625;
+        text-transform: uppercase;
+    }
+
+    // what a concept
+    &__bottom {
+        font-size: 1.15em;
+        font-family: var(--typeface-accent);
+        font-weight: 525;
+        font-style: italic;
+    }
+}

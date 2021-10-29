@@ -1,0 +1,8 @@
+*.css.map
+node_modules
+/dist
+.env
+# Local Netlify folder
+.netlify
+.DS_Store
+posts.json

@@ -1,0 +1,8 @@
+{% macro fruitySticker(params) %}
+    <figure class="food-sticker  {{ params.class if params.class }}"  style="--theme-color: {{ params.themeColor }}">
+        <img class="food-sticker__image" src="{{ params.img.src }}" alt="{{ params.img.alt if params.img.alt }}">
+        {%- if params.caption -%}
+            <figcaption class="food-sticker__caption">{{ params.caption }}</figcaption>
+        {%- endif -%}
+    </figure>
+{% endmacro %}

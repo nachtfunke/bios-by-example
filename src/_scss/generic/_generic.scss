@@ -1,0 +1,56 @@
+@use '../tools/mixins/' as media;
+
+* {
+    box-sizing: border-box;
+    text-size-adjust: none;
+
+    &:focus {
+        scroll-padding-block-end: 8vh;
+    }
+}
+
+:root {
+    /* Color weights, Lightness values */
+    // Palette "Sesame Mint" from David Aerne's farbvelo: https://farbvelo.elastiq.ch/?s=eyJzIjoiMDhjM2Q4MzViYzEwYiIsImEiOjQsImNnIjo0LCJoZyI6dHJ1ZSwiaGIiOnRydWUsImhvIjpmYWxzZSwiaGMiOmZhbHNlLCJodCI6ZmFsc2UsImIiOmZhbHNlLCJwIjowLjU4MywibWQiOjYwLCJjbSI6ImxjaCIsImYiOiJGdWxsIFJhbmRvbSIsImMiOiJoc2wiLCJzYyI6ZmFsc2UsImJ3Ijp0cnVlLCJhaCI6ZmFsc2UsIml1IjoiaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE2MzUzNDYxOTAzNDYtNmIyMDA1MDg3ZTcxP2Nyb3A9ZW50cm9weSZjcz10aW55c3JnYiZmaXQ9Y3JvcCZmbT1qcGcmaD0zMDAmaXhpZD1Nbnd4ZkRCOE1YeHlZVzVrYjIxOE1IeDhmSHg4Zkh4OE1UWXpOVFExTWpFek5nJml4bGliPXJiLTEuMi4xJnE9ODAmdz0yMDAiLCJsbSI6dHJ1ZSwic20iOmZhbHNlfQ==
+    --color-weight-100: 98%;
+    --color-weight-300: 82%;
+    --color-weight-500: 67%;
+    --color-weight-700: 52%;
+    --color-weight-900: 37%;
+    /* All colors, Hue & Saturation values */
+    --color-hs-delta-mint: 143 47%;
+    --color-hs-endive: 102 35%;
+    --color-hs-planet-earth: 68 31%;
+    --color-hs-sesame-seed: 43 40%;
+    /* functional typefaces */
+    --typeface-system: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    --typeface-base: 'Lexend Tera', sans-serif;
+    --typeface-accent: 'Lora', serif;
+    /* functional Color Properties */
+    --color-hs-accent: var(--accent-color, var(--color-hs-delta-mint));
+    --color-hs-primary: var(--color-hs-sesame-seed);
+    --color-hs-highlight: var(--color-hs-endive);
+    --color-hs-dark: var(--color-hs-planet-earth);
+    --color-accent: hsl(var(--color-hs-accent) var(--color-weight-300));
+    --color-primary: hsl(var(--color-hs-primary) var(--color-weight-900));
+    --color-highlight: hsl(var(--color-hs-highlight) var(--color-weight-300));
+    --color-dark: hsl(var(--color-hs-dark) var(--color-weight-900));
+    /* Base Settings */
+    --base-spacing: clamp(2em, 5vmax, 5em);
+    --base-padding: clamp(1em, 2vmin, 2em);
+    --base-line-size: 5px;
+    --base-animation-easing: cubic-bezier(0.85, 0, 0.15, 1);
+    --base-animation-duration: 1ms;
+}
+
+/* Add Animation progressively; Only make durations longer when there is no preferences */
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        --base-animation-duration: 350ms;
+    }
+}
+
+::selection {
+    background-color: hsl(var(--color-hs-accent) var(--color-weight-700));
+    color: hsl(var(--color-hs-accent) var(--color-weight-100));
+}
